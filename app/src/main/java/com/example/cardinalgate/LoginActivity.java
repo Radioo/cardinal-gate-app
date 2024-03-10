@@ -2,7 +2,6 @@ package com.example.cardinalgate;
 
 import android.os.Bundle;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,8 +15,9 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.cardinalgate.core.TokenManager;
 import com.example.cardinalgate.core.api.APIClient;
-import com.example.cardinalgate.core.api.APIException;
+import com.example.cardinalgate.core.api.APIConfig;
 import com.example.cardinalgate.core.api.APIInterface;
 import com.example.cardinalgate.core.api.model.calls.AuthorizeCall;
 import com.example.cardinalgate.core.api.model.responses.AuthorizeResponse;
@@ -52,8 +52,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     protected void onLoginButtonClick(View view) {
-        Log.d("LoginActivity", "Login button clicked");
-
         loginButton.setEnabled(false);
         loginLoader.setVisibility(View.VISIBLE);
 
@@ -76,19 +74,29 @@ public class LoginActivity extends AppCompatActivity {
         call.enqueue(new Callback<AuthorizeResponse>() {
             @Override
             public void onResponse(@NonNull Call<AuthorizeResponse> call, @NonNull Response<AuthorizeResponse> response) {
-                Log.d("LoginActivity", "Response received");
+                AuthorizeResponse authorizeResponse = response.body();
 
-                loginButton.setEnabled(true);
-                loginLoader.setVisibility(View.INVISIBLE);
+                if (authorizeResponse == null || authorizeResponse.token == null || authorizeResponse.token.length() != APIConfig.TOKEN_LENGTH) {
+                    Toast.makeText(LoginActivity.this, "Invalid token received", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    TokenManager.saveToken(LoginActivity.this, authorizeResponse.token);
+                }
+
+                enableLoginAction();
             }
 
             @Override
             public void onFailure(@NonNull Call<AuthorizeResponse> call, @NonNull Throwable t) {
                 UIHelper.handleAPIError(LoginActivity.this, t);
 
-                loginButton.setEnabled(true);
-                loginLoader.setVisibility(View.INVISIBLE);
+                enableLoginAction();
             }
         });
+    }
+
+    private void enableLoginAction() {
+        loginButton.setEnabled(true);
+        loginLoader.setVisibility(View.INVISIBLE);
     }
 }

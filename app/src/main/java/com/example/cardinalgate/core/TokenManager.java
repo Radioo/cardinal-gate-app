@@ -2,29 +2,28 @@ package com.example.cardinalgate.core;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
 public class TokenManager {
     @Nullable
     public static String token;
-    private final Context context;
 
-    TokenManager(Context context) {
-        this.context = context;
-    }
-
-    public void loadToken() {
+    public static void loadToken(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("cg_local_token", Context.MODE_PRIVATE);
         token = sharedPreferences.getString("token", null);
+
+        Log.d("TokenManager", "Token loaded: " + token);
     }
 
-    public void saveToken(String token) {
+    public static void saveToken(Context context, String token) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("cg_local_token", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("token", token);
         editor.apply();
 
         TokenManager.token = token;
+        Log.d("TokenManager", "Token saved: " + token);
     }
 }
