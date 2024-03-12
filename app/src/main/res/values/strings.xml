@@ -35,4 +35,8 @@
     <string name="game_gd" translatable="false">GITADORA</string>
     <string name="label_game">Game</string>
     <string name="label_play_count">Play Count</string>
+    <string name="label_estimated_total_play_time">Estimated play time: %s hours</string>
+    <string name="menu_title_general">General</string>
+    <string name="menu_title_iidx_rivals">Rivals</string>
+    <string name="menu_logout">Logout</string>
 </resources>

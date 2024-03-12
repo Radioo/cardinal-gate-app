@@ -3,18 +3,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_home" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
-    </group>
+    <item android:title="@string/menu_title_general">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_home"
+                    android:checked="true"
+                    android:icon="@drawable/baseline_home_24"
+                    android:title="@string/menu_home" />
+                <item
+                    android:icon="@drawable/logout"
+                    android:title="@string/menu_logout" />
+            </group>
+        </menu>
+    </item>
+
+    <item android:title="@string/game_iidx">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:icon="@drawable/swords"
+                    android:title="@string/menu_title_iidx_rivals" />
+            </group>
+        </menu>
+    </item>
 </menu>

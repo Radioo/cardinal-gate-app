@@ -6,6 +6,7 @@ import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -15,7 +16,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.airbnb.lottie.LottieAnimationView;
 import com.example.cardinalgate.core.TokenManager;
 import com.example.cardinalgate.core.api.APIClient;
 import com.example.cardinalgate.core.api.APIConfig;
@@ -31,7 +31,7 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
     private APIInterface apiClient;
     private Button loginButton;
-    private LottieAnimationView loginLoader;
+    private ProgressBar loginLoader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

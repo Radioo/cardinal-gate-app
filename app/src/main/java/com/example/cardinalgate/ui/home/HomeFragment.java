@@ -3,7 +3,6 @@ package com.example.cardinalgate.ui.home;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,13 +18,13 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cardinalgate.R;
 import com.example.cardinalgate.core.api.APIClient;
-import com.example.cardinalgate.core.api.APIException;
 import com.example.cardinalgate.core.api.APIInterface;
 import com.example.cardinalgate.core.api.model.responses.SummaryResponse;
 import com.example.cardinalgate.databinding.FragmentHomeBinding;
 import com.example.cardinalgate.ui.UIHelper;
 
-import java.util.Objects;
+import java.text.DecimalFormat;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,6 +35,7 @@ public class HomeFragment extends Fragment {
     private APIInterface apiClient;
     private TableLayout totalPlayCountsTable;
     private ProgressBar homeProgressBar;
+    private TextView estimatedTotalPlayTime;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -49,6 +49,7 @@ public class HomeFragment extends Fragment {
 
         totalPlayCountsTable = root.findViewById(R.id.totalPlayCountsTable);
         homeProgressBar = root.findViewById(R.id.homeProgressBar);
+        estimatedTotalPlayTime = root.findViewById(R.id.estimatedTotalPlayTimeLabel);
 
         loadSummary();
 
@@ -92,8 +93,11 @@ public class HomeFragment extends Fragment {
 
     private void parseSummaryData(SummaryResponse response) {
         Context context = requireContext();
+        long totalPlays = 0L;
 
         for(SummaryResponse.PlayCount playCount : response.playCounts) {
+            totalPlays += playCount.count;
+
             String game = playCount.game;
             String gameKey = "game_" + game;
             @SuppressLint("DiscouragedApi")
@@ -107,12 +111,19 @@ public class HomeFragment extends Fragment {
             gameView.setText(gameTranslated);
 
             TextView countView = new TextView(context);
-            countView.setText(String.valueOf(playCount.count));
+            countView.setText(String.format(Locale.getDefault(), "%,d", playCount.count));
 
             row.addView(gameView);
             row.addView(countView);
 
             totalPlayCountsTable.addView(row);
         }
+
+        float totalHours = totalPlays / 30.0f;
+        DecimalFormat format = new DecimalFormat("0.##");
+
+        String labelBase = getString(R.string.label_estimated_total_play_time);
+        String labelFormatted = String.format(labelBase, format.format(totalHours));
+        estimatedTotalPlayTime.setText(labelFormatted);
     }
 }
