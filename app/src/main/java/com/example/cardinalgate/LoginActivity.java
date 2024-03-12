@@ -1,5 +1,6 @@
 package com.example.cardinalgate;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
@@ -34,6 +35,8 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        checkIfTokenExists();
+
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
@@ -81,6 +84,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else {
                     TokenManager.saveToken(LoginActivity.this, authorizeResponse.token);
+                    switchToMainActivity();
                 }
 
                 enableLoginAction();
@@ -93,6 +97,18 @@ public class LoginActivity extends AppCompatActivity {
                 enableLoginAction();
             }
         });
+    }
+
+    private void checkIfTokenExists() {
+        TokenManager.loadToken(this);
+        if (TokenManager.token != null) {
+            switchToMainActivity();
+        }
+    }
+
+    private void switchToMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
     private void enableLoginAction() {

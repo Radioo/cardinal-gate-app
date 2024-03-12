@@ -13,6 +13,7 @@ public class APIClient {
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(interceptor)
                 .addInterceptor(new BaseUrlInterceptor())
+                .addInterceptor(new TokenInterceptor())
                 .addNetworkInterceptor(new APIResponseInterceptor())
                 .build();
 

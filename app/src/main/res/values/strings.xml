@@ -23,4 +23,16 @@
     <string name="action_login">Login</string>
     <string name="psych_out_text">You\'ve stepped upon a plank where your mind is the key. There are pirates who will lend you guidance; the Internet is yours to conquer alone. Tapping here will take more than mere logic and Google strategy, but the criteria are just as hidden as what they reveal. Find yourself, and you will find the very thing hidden on this server. Beyond here is something like an island — beyond here is a pretty cool eamuse server.</string>
     <string name="image_description_cg_logo">CG logo</string>
+    <string name="game_iidx" translatable="false">beatmania IIDX</string>
+    <string name="game_sdvx" translatable="false">SOUND VOLTEX</string>
+    <string name="game_popn" translatable="false">pop\'n music</string>
+    <string name="game_ddr" translatable="false">DanceDanceRevolution</string>
+    <string name="game_jubeat" translatable="false">jubeat</string>
+    <string name="game_rb" translatable="false">REFLEC BEAT</string>
+    <string name="game_msc" translatable="false">MÚSECA</string>
+    <string name="game_bs" translatable="false">BeatStream</string>
+    <string name="game_nst" translatable="false">ノスタルジア</string>
+    <string name="game_gd" translatable="false">GITADORA</string>
+    <string name="label_game">Game</string>
+    <string name="label_play_count">Play Count</string>
 </resources>
