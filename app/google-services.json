@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "694811596007",
+    "project_id": "cardinal-gate-app",
+    "storage_bucket": "cardinal-gate-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:694811596007:android:080f5a29f37ade2b3ebe42",
+        "android_client_info": {
+          "package_name": "com.example.cardinalgate"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASOnDi6njYJtV48IryJPiSRxVG-P2RpT0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -3,25 +3,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <item android:title="@string/menu_title_general">
+    <item android:title="@string/menu_title_general"
+        android:id="@+id/generalNavMenu">
         <menu>
             <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/nav_home"
-                    android:checked="true"
+                    android:checked="false"
                     android:icon="@drawable/baseline_home_24"
                     android:title="@string/menu_home" />
                 <item
+                    android:id="@+id/nav_logout"
                     android:icon="@drawable/logout"
                     android:title="@string/menu_logout" />
             </group>
         </menu>
     </item>
 
-    <item android:title="@string/game_iidx">
+    <item
+        android:id="@+id/iidxNavMenu"
+        android:title="@string/game_iidx"
+        android:visible="false">
         <menu>
             <group android:checkableBehavior="single">
                 <item
+                    android:id="@+id/nav_iidx_rivals"
                     android:icon="@drawable/swords"
                     android:title="@string/menu_title_iidx_rivals" />
             </group>

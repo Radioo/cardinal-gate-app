@@ -18,6 +18,12 @@ loggingInterceptor = "5.0.0-alpha.12"
 okhttp = "5.0.0-alpha.12"
 activity = "1.8.0"
 lottie = "6.4.0"
+materialVersion = "1.12.0-alpha03"
+material3 = "1.3.0-alpha02"
+comGoogleGmsGoogleServicesGradlePlugin = "4.4.1"
+firebaseBom = "32.7.4"
+firebaseAnalytics = "21.5.1"
+firebaseMessaging = "23.4.1"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -38,6 +44,12 @@ logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-intercep
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
 activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 lottie = { group = "com.airbnb.android", name = "lottie", version.ref = "lottie" }
+google-material = { group = "com.google.android.material", name = "material", version.ref = "materialVersion" }
+material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "material3" }
+com-google-gms-google-services-gradle-plugin = { group = "com.google.gms.google-services", name = "com.google.gms.google-services.gradle.plugin", version.ref = "comGoogleGmsGoogleServicesGradlePlugin" }
+firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
+firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics", version.ref = "firebaseAnalytics" }
+firebase-messaging = { group = "com.google.firebase", name = "firebase-messaging", version.ref = "firebaseMessaging" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

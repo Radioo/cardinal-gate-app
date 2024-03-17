@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cardinalgate.R;
+import com.example.cardinalgate.core.UserDataManager;
 import com.example.cardinalgate.core.api.APIClient;
 import com.example.cardinalgate.core.api.APIInterface;
 import com.example.cardinalgate.core.api.model.responses.SummaryResponse;
@@ -36,6 +37,21 @@ public class HomeFragment extends Fragment {
     private TableLayout totalPlayCountsTable;
     private ProgressBar homeProgressBar;
     private TextView estimatedTotalPlayTime;
+    private onSummaryRequestResponse listener;
+
+    public interface onSummaryRequestResponse {
+        void onSummaryResponse(SummaryResponse response);
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof onSummaryRequestResponse) {
+            listener = (onSummaryRequestResponse) context;
+        } else {
+            throw new ClassCastException(context + " must implement HomeFragment.onSummaryRequestResponse");
+        }
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -75,7 +91,12 @@ public class HomeFragment extends Fragment {
                     return;
                 }
 
+                if(listener != null) {
+                    listener.onSummaryResponse(summaryResponse);
+                }
+
                 parseSummaryData(summaryResponse);
+                UserDataManager.setProfileIds(summaryResponse.profiles);
                 hideLoader();
             }
 

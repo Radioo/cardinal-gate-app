@@ -39,4 +39,11 @@
     <string name="menu_title_general">General</string>
     <string name="menu_title_iidx_rivals">Rivals</string>
     <string name="menu_logout">Logout</string>
+    <string name="iidx_play_style_sp" translatable="false">SP</string>
+    <string name="iidx_play_style_dp" translatable="false">DP</string>
+    <string name="label_iidx_rivals">beatmania IIDX Rivals</string>
+    <string name="button_add_sp_rival">Add SP Rival</string>
+    <string name="button_add_dp_rival">Add DP Rival</string>
+    <string name="label_cancel">Cancel</string>
+    <string name="label_add">Add</string>
 </resources>

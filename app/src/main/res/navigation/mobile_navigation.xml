@@ -9,17 +9,17 @@
         android:id="@+id/nav_home"
         android:name="com.example.cardinalgate.ui.home.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+    </fragment>
 
+    <activity
+        android:id="@+id/nav_logout"
+        android:name="com.example.cardinalgate.LoginActivity"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.cardinalgate.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
-
-    <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.cardinalgate.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_iidx_rivals"
+        android:name="com.example.cardinalgate.ui.iidx.IIDXRivalsFragment"
+        android:label="@string/label_iidx_rivals"
+        tools:layout="@layout/fragment_i_i_d_x_rivals" />
 </navigation>

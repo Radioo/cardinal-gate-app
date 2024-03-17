@@ -2,6 +2,7 @@ package com.example.cardinalgate;
 
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -10,33 +11,43 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.cardinalgate.core.TokenManager;
+import com.example.cardinalgate.core.api.model.responses.SummaryResponse;
 import com.example.cardinalgate.databinding.ActivityMainBinding;
+import com.example.cardinalgate.ui.home.HomeFragment;
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity {
-
+public class MainActivity extends AppCompatActivity implements HomeFragment.onSummaryRequestResponse {
     private AppBarConfiguration mAppBarConfiguration;
-    private ActivityMainBinding binding;
+    private NavigationView navView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        com.example.cardinalgate.databinding.ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        setSupportActionBar(binding.appBarMain.toolbar);
+        setSupportActionBar(binding.appBarMain.topAppBar);
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
+                R.id.nav_home, R.id.nav_logout, R.id.nav_iidx_rivals)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        navView = findViewById(R.id.nav_view);
+        MenuItem item = navView.getMenu().findItem(R.id.nav_logout);
+        item.setOnMenuItemClickListener(item1 -> {
+            TokenManager.deleteToken(getApplicationContext());
+            finish();
+            return true;
+        });
     }
 
     @Override
@@ -51,5 +62,15 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    @Override
+    public void onSummaryResponse(SummaryResponse response) {
+        for(SummaryResponse.PlayCount playCount : response.playCounts) {
+            if(playCount.game.equals("iidx")) {
+                MenuItem item = navView.getMenu().findItem(R.id.iidxNavMenu);
+                item.setVisible(true);
+            }
+        }
     }
 }
