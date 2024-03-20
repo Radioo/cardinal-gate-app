@@ -53,8 +53,6 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.onSu
 
             return true;
         });
-
-        throw new RuntimeException("Test Exception");
     }
 
     @Override
