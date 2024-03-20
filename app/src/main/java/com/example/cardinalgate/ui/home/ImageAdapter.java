@@ -20,7 +20,6 @@ import java.util.ArrayList;
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> {
     Context context;
     ArrayList<String> arrayList;
-    OnItemClickListener onItemClickListener;
 
     public ImageAdapter(Context context) {
         this.context = context;
@@ -45,7 +44,6 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
         Drawable drawable = ResourcesCompat.getDrawable(context.getResources(), context.getResources().getIdentifier(drawable_name, "drawable", context.getPackageName()), null);
 
         holder.imageView.setImageDrawable(drawable);
-        holder.itemView.setOnClickListener(view -> onItemClickListener.onClick(holder.imageView, arrayList.get(position)));
     }
 
     @Override
@@ -59,13 +57,5 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
             super(itemView);
             imageView = itemView.findViewById(R.id.list_item_image);
         }
-    }
-
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
-        this.onItemClickListener = onItemClickListener;
-    }
-
-    public interface OnItemClickListener {
-        void onClick(ImageView imageView, String path);
     }
 }

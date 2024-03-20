@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -43,6 +44,7 @@ public class HomeFragment extends Fragment {
     private ProgressBar homeProgressBar;
     private TextView estimatedTotalPlayTime;
     private onSummaryRequestResponse listener;
+    private Button gmButton;
 
     public interface onSummaryRequestResponse {
         void onSummaryResponse(SummaryResponse response);
@@ -71,6 +73,7 @@ public class HomeFragment extends Fragment {
         totalPlayCountsTable = root.findViewById(R.id.totalPlayCountsTable);
         homeProgressBar = root.findViewById(R.id.homeProgressBar);
         estimatedTotalPlayTime = root.findViewById(R.id.estimatedTotalPlayTimeLabel);
+        gmButton = root.findViewById(R.id.gmButton);
 
         loadSummary();
 
@@ -81,6 +84,21 @@ public class HomeFragment extends Fragment {
 
         SnapHelper snapHelper = new CarouselSnapHelper();
         snapHelper.attachToRecyclerView(carouselRecyclerView);
+
+        gmButton.setOnClickListener(l -> {
+            Call<Void> call = apiClient.sayGm();
+            call.enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
+                    Toast.makeText(getContext(), "gm", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
+                    UIHelper.handleAPIError(getContext(), t);
+                }
+            });
+        });
 
         return root;
     }

@@ -22,4 +22,9 @@
         android:name="com.example.cardinalgate.ui.iidx.IIDXRivalsFragment"
         android:label="@string/label_iidx_rivals"
         tools:layout="@layout/fragment_i_i_d_x_rivals" />
+    <fragment
+        android:id="@+id/nav_cards"
+        android:name="com.example.cardinalgate.CardsFragment"
+        android:label="fragment_cards"
+        tools:layout="@layout/fragment_cards" />
 </navigation>

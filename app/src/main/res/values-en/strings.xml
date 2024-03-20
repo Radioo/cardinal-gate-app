@@ -33,4 +33,5 @@
     <string name="button_add_dp_rival">Add DP Rival</string>
     <string name="label_cancel">Cancel</string>
     <string name="label_add">Add</string>
+    <string name="menu_cards">Cards</string>
 </resources>

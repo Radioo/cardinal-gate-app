@@ -22,6 +22,9 @@ public interface APIInterface {
     @GET("/summary")
     Call<SummaryResponse> getSummary();
 
+    @GET("/say_gm")
+    Call<Void> sayGm();
+
     @GET("iidx/rival")
     Call<IIDXGetRivalsResponse> getIIDXRivals();
 

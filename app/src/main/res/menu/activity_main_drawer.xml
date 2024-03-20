@@ -13,6 +13,10 @@
                     android:icon="@drawable/baseline_home_24"
                     android:title="@string/menu_home" />
                 <item
+                    android:id="@+id/nav_cards"
+                    android:icon="@drawable/credit_card"
+                    android:title="@string/menu_cards" />
+                <item
                     android:id="@+id/nav_logout"
                     android:icon="@drawable/logout"
                     android:title="@string/menu_logout" />
