@@ -15,6 +15,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SnapHelper;
 
 import com.example.cardinalgate.R;
 import com.example.cardinalgate.core.UserDataManager;
@@ -23,8 +25,11 @@ import com.example.cardinalgate.core.api.APIInterface;
 import com.example.cardinalgate.core.api.model.responses.SummaryResponse;
 import com.example.cardinalgate.databinding.FragmentHomeBinding;
 import com.example.cardinalgate.ui.UIHelper;
+import com.google.android.material.carousel.CarouselLayoutManager;
+import com.google.android.material.carousel.CarouselSnapHelper;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Locale;
 
 import retrofit2.Call;
@@ -68,6 +73,14 @@ public class HomeFragment extends Fragment {
         estimatedTotalPlayTime = root.findViewById(R.id.estimatedTotalPlayTimeLabel);
 
         loadSummary();
+
+        RecyclerView carouselRecyclerView = root.findViewById(R.id.carousel_recycler_view);
+
+        ImageAdapter imageAdapter = new ImageAdapter(getContext());
+        carouselRecyclerView.setAdapter(imageAdapter);
+
+        SnapHelper snapHelper = new CarouselSnapHelper();
+        snapHelper.attachToRecyclerView(carouselRecyclerView);
 
         return root;
     }

@@ -1,5 +1,6 @@
 package com.example.cardinalgate;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -46,8 +47,14 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.onSu
         item.setOnMenuItemClickListener(item1 -> {
             TokenManager.deleteToken(getApplicationContext());
             finish();
+
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(intent);
+
             return true;
         });
+
+        throw new RuntimeException("Test Exception");
     }
 
     @Override

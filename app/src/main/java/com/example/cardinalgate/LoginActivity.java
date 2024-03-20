@@ -94,6 +94,9 @@ public class LoginActivity extends AppCompatActivity {
                 else {
                     TokenManager.saveToken(LoginActivity.this, authorizeResponse.token);
 
+                    // Unsubscribe from previous notifications
+                    FirebaseMessaging.getInstance().deleteToken();
+
                     FirebaseMessaging.getInstance()
                             .subscribeToTopic("rival_" + authorizeResponse.accountId)
                             .addOnCompleteListener(task -> {
@@ -128,6 +131,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void switchToMainActivity() {
+        finish();
+
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }

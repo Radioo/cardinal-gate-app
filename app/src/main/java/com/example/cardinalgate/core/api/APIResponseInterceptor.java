@@ -19,12 +19,19 @@ public class APIResponseInterceptor implements Interceptor {
     public Response intercept(@NonNull Chain chain) throws IOException {
         Request request = chain.request();
         Response response = chain.proceed(request);
+        int responseCode = response.code();
 
-        if (response.code() != 200) {
+        if(responseCode != 200) {
             String responseBody = response.body().string();
             BaseErrorResponse errorResponse = gson.fromJson(responseBody, BaseErrorResponse.class);
+            String errorText = errorResponse.error == null ? "Unknown error" : errorResponse.error;
 
-            throw new APIException(errorResponse.error == null ? "Unknown error" : errorResponse.error);
+            if(responseCode == 401) {
+                throw new APIUnauthorizedException(errorText);
+            }
+            else {
+                throw new APIException(errorText);
+            }
         }
 
         return response;
