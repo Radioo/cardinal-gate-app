@@ -96,9 +96,11 @@ public abstract class BaseFragment extends Fragment {
     }
 
     protected void handleAPIError(Throwable t) {
-        hideLoader(false);
-        mascotImage.setVisibility(View.VISIBLE);
-        errorText.setVisibility(View.VISIBLE);
+        if(spinner.getVisibility() == View.VISIBLE) {
+            hideLoader(false);
+            mascotImage.setVisibility(View.VISIBLE);
+            errorText.setVisibility(View.VISIBLE);
+        }
 
         Context context = requireContext();
         String message = Objects.requireNonNull(t.getMessage());
@@ -114,8 +116,12 @@ public abstract class BaseFragment extends Fragment {
             context.startActivity(intent);
         }
         else {
-            Snackbar.make(mainView, message, Snackbar.LENGTH_SHORT).show();
+            makeSnackBar(message);
         }
+    }
+
+    protected void makeSnackBar(String message) {
+        Snackbar.make(mainView, message, Snackbar.LENGTH_SHORT).show();
     }
 
     abstract protected int getLayoutId();

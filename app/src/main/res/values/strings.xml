@@ -6,7 +6,6 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
@@ -46,7 +45,6 @@
     <string name="button_add_dp_rival">Add DP Rival</string>
     <string name="label_cancel">Cancel</string>
     <string name="label_add">Add</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="menu_cards">Cards</string>
     <string name="label_songs_played">songs played</string>
     <string name="label_network_error">Network error</string>
@@ -54,4 +52,5 @@
     <string name="label_no_plays">No plays found</string>
     <string name="clock_icon">Clock icon</string>
     <string name="gm" translatable="false">gm</string>
+    <string name="mascot">Mascot</string>
 </resources>

@@ -33,6 +33,7 @@ public class HomeFragment extends BaseFragment {
     private ConstraintLayout gameSummaryConstraint;
     private ImageView clockIcon;
     private TextView estimatedPlayTime;
+    private ImageView homeMascot;
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -42,9 +43,11 @@ public class HomeFragment extends BaseFragment {
         gameSummaryConstraint = mainView.findViewById(R.id.gameSummaryConstraint);
         clockIcon = mainView.findViewById(R.id.clockIcon);
         estimatedPlayTime = mainView.findViewById(R.id.estimatedPlayTime);
+        homeMascot = mainView.findViewById(R.id.homeMascot);
 
         setColors();
         loadSummary();
+        addMascotOnClickListener();
     }
 
     @Override
@@ -109,5 +112,25 @@ public class HomeFragment extends BaseFragment {
     private void setColors() {
         int colorOnSurface = MaterialColors.getColor(mainView, com.google.android.material.R.attr.colorOnSurface);
         clockIcon.setColorFilter(colorOnSurface);
+    }
+
+    private void addMascotOnClickListener() {
+        homeMascot.setOnClickListener(v -> {
+            homeMascot.setEnabled(false);
+
+            apiInterface.sayGm().enqueue(new retrofit2.Callback<Void>() {
+                @Override
+                public void onResponse(@NonNull Call<Void> call, @NonNull retrofit2.Response<Void> response) {
+                    makeSnackBar("gm");
+                    homeMascot.setEnabled(true);
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
+                    handleAPIError(t);
+                    homeMascot.setEnabled(true);
+                }
+            });
+        });
     }
 }
