@@ -52,4 +52,6 @@
     <string name="label_network_error">Network error</string>
     <string name="button_retry">Retry</string>
     <string name="label_no_plays">No plays found</string>
+    <string name="clock_icon">Clock icon</string>
+    <string name="gm" translatable="false">gm</string>
 </resources>
