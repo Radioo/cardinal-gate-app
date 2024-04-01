@@ -18,6 +18,15 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        create("release") {
+            storeFile = file("keystore/androidkey.jks")
+            storePassword = "000000"
+            keyAlias = "key0"
+            keyPassword = "000000"
+        }
+    }
+
     buildTypes {
         release {
             buildConfigField("String", "API_URL", "\"https://dev.cardinal-gate.net/\"")
@@ -27,16 +36,22 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+
+            signingConfig = signingConfigs.getByName("release")
         }
 
         debug {
             buildConfigField("String", "API_URL", "\"http://10.0.2.2:8089/\"")
         }
     }
+
+
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
     buildFeatures {
         viewBinding = true
         dataBinding = true
