@@ -24,7 +24,7 @@ jobs:
           arguments: assembleRelease
 
       - name: Rename APK
-        run: mv app/build/outputs/apk/release/app-release-unsigned.apk cg-${{ github.ref_name }}.apk
+        run: mv app/build/outputs/apk/release/app-release.apk cg-${{ github.ref_name }}.apk
 
       - name: Release APK
         uses: softprops/action-gh-release@v2
