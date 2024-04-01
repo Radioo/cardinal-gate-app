@@ -18,6 +18,11 @@ jobs:
         with:
           java-version: 1.8
 
+      - name: Setup Gradle
+        uses: eskatos/gradle-command-action@v1
+        with:
+          gradle-version: 8.4
+
       - name: Build with Gradle
         run: ./gradlew build
 
