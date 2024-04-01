@@ -42,6 +42,7 @@ public class IIDXRivalsRecyclerViewAdapter extends RecyclerView.Adapter<IIDXRiva
         apiClient = APIClient.getClient().create(APIInterface.class);
     }
 
+    @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull android.view.ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.iidx_rival_row, parent, false);
