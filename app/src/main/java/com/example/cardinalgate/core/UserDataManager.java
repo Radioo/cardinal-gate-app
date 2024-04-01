@@ -37,8 +37,4 @@ public class UserDataManager {
     public static boolean hasSeriesProfile(Series series) {
         return profileIdMap.containsKey(series);
     }
-
-    public static boolean shouldShowIIDXMenu() {
-        return hasSeriesProfile(Series.IIDX);
-    }
 }
