@@ -50,7 +50,9 @@ public class IIDXRivalsRecyclerViewAdapter extends RecyclerView.Adapter<IIDXRiva
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        IIDXGetRivalsResponse.IIDXRival rival = rivals.get(position);
+        int positionInHolder = holder.getAdapterPosition();
+
+        IIDXGetRivalsResponse.IIDXRival rival = rivals.get(positionInHolder);
         holder.djName.setText(String.format("DJ %s", rival.djName));
         holder.IIDXId.setText(formatIIDXId(rival.rivalId));
         holder.notifyCheckBox.setChecked(rival.notify == 1);
@@ -102,9 +104,9 @@ public class IIDXRivalsRecyclerViewAdapter extends RecyclerView.Adapter<IIDXRiva
                 call.enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
-                        rivals.remove(position);
-                        notifyItemRemoved(position);
-                        notifyItemRangeChanged(position, rivals.size());
+                        rivals.remove(positionInHolder);
+                        notifyItemRemoved(positionInHolder);
+                        notifyItemRangeChanged(positionInHolder, rivals.size());
                         Toast.makeText(context, "Rival removed", Toast.LENGTH_SHORT).show();
                     }
 
