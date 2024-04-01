@@ -8,9 +8,7 @@
     <fragment
         android:id="@+id/nav_home"
         android:name="com.example.cardinalgate.ui.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" >
-    </fragment>
+        android:label="@string/menu_home"></fragment>
 
     <activity
         android:id="@+id/nav_logout"

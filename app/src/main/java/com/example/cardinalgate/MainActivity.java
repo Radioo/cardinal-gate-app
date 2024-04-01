@@ -18,7 +18,7 @@ import com.example.cardinalgate.databinding.ActivityMainBinding;
 import com.example.cardinalgate.ui.home.HomeFragment;
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity implements HomeFragment.onSummaryRequestResponse {
+public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private NavigationView navView;
 
@@ -67,15 +67,5 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.onSu
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
-    }
-
-    @Override
-    public void onSummaryResponse(SummaryResponse response) {
-        for(SummaryResponse.PlayCount playCount : response.playCounts) {
-            if(playCount.game.equals("iidx")) {
-                MenuItem item = navView.getMenu().findItem(R.id.iidxNavMenu);
-                item.setVisible(true);
-            }
-        }
     }
 }

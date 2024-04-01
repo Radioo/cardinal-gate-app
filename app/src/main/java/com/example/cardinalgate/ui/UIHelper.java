@@ -3,11 +3,13 @@ package com.example.cardinalgate.ui;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.cardinalgate.LoginActivity;
 import com.example.cardinalgate.core.TokenManager;
 import com.example.cardinalgate.core.api.APIUnauthorizedException;
+import com.google.android.material.snackbar.Snackbar;
 
 public class UIHelper {
     public static void handleAPIError(Context context, Throwable t) {
@@ -21,5 +23,9 @@ public class UIHelper {
             Intent intent = new Intent(context, LoginActivity.class);
             context.startActivity(intent);
         }
+    }
+
+    public static void makeSnackBar(View view, String message) {
+        Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show();
     }
 }

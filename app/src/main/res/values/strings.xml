@@ -35,7 +35,7 @@
     <string name="game_gd" translatable="false">GITADORA</string>
     <string name="label_game">Game</string>
     <string name="label_play_count">Play Count</string>
-    <string name="label_estimated_total_play_time">Estimated play time: %s hours</string>
+    <string name="label_estimated_total_play_time">Estimated play time</string>
     <string name="menu_title_general">General</string>
     <string name="menu_title_iidx_rivals">Rivals</string>
     <string name="menu_logout">Logout</string>
@@ -47,6 +47,9 @@
     <string name="label_cancel">Cancel</string>
     <string name="label_add">Add</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="menu_cards">Cards</string>
+    <string name="label_songs_played">songs played</string>
+    <string name="label_network_error">Network error</string>
+    <string name="button_retry">Retry</string>
+    <string name="label_no_plays">No plays found</string>
 </resources>
