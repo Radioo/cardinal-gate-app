@@ -1,7 +1,8 @@
 package com.example.cardinalgate.core.api;
 
+import com.example.cardinalgate.BuildConfig;
+
 public class APIConfig {
-    public static final String URL = "http://10.0.2.2:8089/";
-//    public static final String URL = "https://dev.cardinal-gate.net/";
+    public static final String URL = BuildConfig.API_URL;
     public static final int TOKEN_LENGTH = 64;
 }

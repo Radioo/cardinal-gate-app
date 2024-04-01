@@ -20,11 +20,17 @@ android {
 
     buildTypes {
         release {
+            buildConfigField("String", "API_URL", "\"https://dev.cardinal-gate.net/\"")
+
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+        }
+
+        debug {
+            buildConfigField("String", "API_URL", "\"http://10.0.2.2:8089/\"")
         }
     }
     compileOptions {
@@ -34,6 +40,7 @@ android {
     buildFeatures {
         viewBinding = true
         dataBinding = true
+        buildConfig = true
     }
 }
 
