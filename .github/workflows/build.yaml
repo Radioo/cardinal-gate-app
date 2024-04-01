@@ -3,9 +3,31 @@ name: Build APK
 on:
   push:
     branches:
-      - master
+      - '*'
+  pull_request:
+  workflow_dispatch:
 
 jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: 21
+          distribution: temurin
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          cache-read-only: true
+
+      - name: Spotless Check
+        run: ./gradlew spotlessCheck
+
   build:
     runs-on: ubuntu-latest
 
@@ -13,23 +35,25 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up JDK
+      - name: Setup Java
         uses: actions/setup-java@v4
         with:
-          java-version: '21'
+          java-version: 21
           distribution: 'temurin'
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-home-cache-cleanup: true
 
-      - name: Build with Gradle
-        run: ./gradlew build
+      - name: Build
+        run: ./gradlew assembleDefaultRelease
 
-      - name: Upload APK
+      - name: List files
+        run: ls app/build/outputs/apk/default/release
+
+      - name: Upload
         uses: actions/upload-artifact@v4
         with:
-          name: app-debug
-          path: app/build/outputs/apk/debug/app-debug.apk
-
-      - name: Print current tag
-        run: echo ${{ github.ref }}
+          name: cg-${{ github.sha }}
+          path: app/build/outputs/apk/default/release/app-default-release.apk
