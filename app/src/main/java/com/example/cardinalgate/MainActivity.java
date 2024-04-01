@@ -2,6 +2,7 @@ package com.example.cardinalgate;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -13,6 +14,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.cardinalgate.core.TokenManager;
+import com.example.cardinalgate.core.UserDataManager;
 import com.example.cardinalgate.core.api.model.responses.SummaryResponse;
 import com.example.cardinalgate.databinding.ActivityMainBinding;
 import com.example.cardinalgate.ui.home.HomeFragment;
@@ -53,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
 
             return true;
         });
+
+        UserDataManager.setNavView(navView);
     }
 
     @Override

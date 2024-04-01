@@ -1,6 +1,9 @@
 package com.example.cardinalgate.core.enums;
 
+import android.content.Intent;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.example.cardinalgate.R;
 
@@ -52,6 +55,16 @@ public enum Series {
                 return R.drawable.cab_gd;
             default:
                 throw new IllegalArgumentException("Invalid series: " + this);
+        }
+    }
+
+    @Nullable
+    public Integer getNavMenu() {
+        switch(this) {
+            case IIDX:
+                return R.id.iidxNavMenu;
+            default:
+                return null;
         }
     }
 }
