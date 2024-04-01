@@ -30,3 +30,6 @@ jobs:
         with:
           name: app-debug
           path: app/build/outputs/apk/debug/app-debug.apk
+
+      - name: Print current tag
+        run: echo ${{ github.ref }}
