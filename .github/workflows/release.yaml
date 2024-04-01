@@ -15,20 +15,19 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
-          java-version: '21'
-          distribution: 'temurin'
+          java-version: 21
+          distribution: temurin
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
+      - name: Gradle Build
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          arguments: assembleRelease
 
-      - name: Build Release APK
-        run: ./gradlew assembleRelease
+      - name: Rename APK
+        run: mv app/build/outputs/apk/release/app-release-unsigned.apk cg-${{ github.ref_name }}.apk
 
-      - name: Rename APK to include tag
-        run: mv app/build/outputs/apk/release/app-release.apk app/build/outputs/apk/release/app-${{ github.ref }}.apk
-
-      - name: Create Release
+      - name: Release APK
         uses: softprops/action-gh-release@v2
         with:
           body: New version
-          files: app/build/outputs/apk/release/app-${{ github.ref }}.apk
+          files: cg-${{ github.ref_name }}.apk
