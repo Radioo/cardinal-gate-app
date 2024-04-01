@@ -29,6 +29,9 @@ jobs:
       - name: Build
         run: ./gradlew assembleRelease
 
+      - name: List files
+        run: ls app/build/outputs/ -aL
+
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
