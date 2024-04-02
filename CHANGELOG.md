@@ -1,3 +1,6 @@
+## [1.7]
+- Update monochrome icon
+
 ## [1.6]
 
 ### New
