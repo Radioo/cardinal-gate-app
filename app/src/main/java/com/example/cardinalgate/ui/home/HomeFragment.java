@@ -1,6 +1,8 @@
 package com.example.cardinalgate.ui.home;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -48,6 +50,24 @@ public class HomeFragment extends BaseFragment {
         setColors();
         loadSummary();
         addMascotOnClickListener();
+    }
+
+    @Override
+    public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        requireActivity().getMenuInflater().inflate(R.menu.mascot_menu, menu);
+        menu.setHeaderTitle("Mascot Menu");
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull android.view.MenuItem item) {
+        int itemId = item.getItemId();
+
+        if(itemId == R.id.menuGm) {
+            sayGm();
+        }
+
+        return super.onContextItemSelected(item);
     }
 
     @Override
@@ -114,23 +134,33 @@ public class HomeFragment extends BaseFragment {
         clockIcon.setColorFilter(colorOnSurface);
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void addMascotOnClickListener() {
-        homeMascot.setOnClickListener(v -> {
-            homeMascot.setEnabled(false);
+        registerForContextMenu(homeMascot);
+        homeMascot.setOnTouchListener((v, event) -> {
+            if(event.getAction() == android.view.MotionEvent.ACTION_UP) {
+                homeMascot.showContextMenu(event.getX(), event.getY());
+            }
 
-            apiInterface.sayGm().enqueue(new retrofit2.Callback<Void>() {
-                @Override
-                public void onResponse(@NonNull Call<Void> call, @NonNull retrofit2.Response<Void> response) {
-                    makeSnackBar("gm");
-                    homeMascot.setEnabled(true);
-                }
+            return true;
+        });
+    }
 
-                @Override
-                public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
-                    handleAPIError(t);
-                    homeMascot.setEnabled(true);
-                }
-            });
+    private void sayGm() {
+        homeMascot.setEnabled(false);
+
+        apiInterface.sayGm().enqueue(new retrofit2.Callback<Void>() {
+            @Override
+            public void onResponse(@NonNull Call<Void> call, @NonNull retrofit2.Response<Void> response) {
+                makeSnackBar("gm");
+                homeMascot.setEnabled(true);
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
+                handleAPIError(t);
+                homeMascot.setEnabled(true);
+            }
         });
     }
 }
