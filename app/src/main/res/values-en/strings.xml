@@ -40,4 +40,5 @@
     <string name="label_no_plays">No plays found</string>
     <string name="clock_icon">Clock icon</string>
     <string name="mascot">Mascot</string>
+    <string name="series_image">Series image</string>
 </resources>
