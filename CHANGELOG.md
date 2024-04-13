@@ -1,3 +1,6 @@
+## [1.8]
+- Add dialog before deleting a card
+
 ## [1.7]
 - Update monochrome icon
 - Add context menu to home screen mascot

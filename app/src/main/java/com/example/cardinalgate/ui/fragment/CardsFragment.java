@@ -161,21 +161,31 @@ public class CardsFragment extends BaseFragment {
     }
 
     private void onCardUnlink(GetCardsResponse.Card card) {
-        showLoader();
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireContext());
+        builder.setTitle("Unlink card");
+        builder.setMessage("Are you sure you want to unlink this card?");
+        builder.setNegativeButton("No", (dialog, which) -> dialog.dismiss());
 
-        apiClient.removeCard(card.id).enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
-                makeSnackBar("Card unlinked successfully");
-                getCards();
-            }
+        builder.setPositiveButton("Yes", (dialog, which) -> {
+            dialog.dismiss();
+            showLoader();
 
-            @Override
-            public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
-                hideLoader(true);
-                makeSnackBar(t.getMessage());
-            }
+            apiClient.removeCard(card.id).enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
+                    makeSnackBar("Card unlinked successfully");
+                    getCards();
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
+                    hideLoader(true);
+                    makeSnackBar(t.getMessage());
+                }
+            });
         });
+
+        builder.show();
     }
 
     private void parseCards(GetCardsResponse.Card[] cards) {
