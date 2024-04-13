@@ -1,3 +1,6 @@
+## [1.8.1]
+- Fix hardcoded emulated card ID
+
 ## [1.8]
 - Add dialog before deleting a card
 - Add experimental host card emulation
