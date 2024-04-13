@@ -219,7 +219,7 @@ public class CardsFragment extends BaseFragment {
         Activity activity = requireActivity();
 
         nfcFCardEmulation.disableService(activity);
-        boolean result = nfcFCardEmulation.setNfcid2ForService(HCEFComponentName, "02fea0bf2a4e547a");
+        boolean result = nfcFCardEmulation.setNfcid2ForService(HCEFComponentName, card.id);
         nfcFCardEmulation.registerSystemCodeForService(HCEFComponentName, "4000");
         nfcFCardEmulation.enableService(activity, HCEFComponentName);
 
