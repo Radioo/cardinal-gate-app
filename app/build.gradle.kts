@@ -13,7 +13,7 @@ android {
         minSdk = 29
         targetSdk = 34
         versionCode = 1
-        versionName = "1.8-dev"
+        versionName = "1.7.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -41,7 +41,7 @@ android {
         }
 
         debug {
-            buildConfigField("String", "API_URL", "\"http://10.0.2.2:8089/\"")
+            buildConfigField("String", "API_URL", "\"http://192.168.100.10:8089/\"")
         }
     }
 
