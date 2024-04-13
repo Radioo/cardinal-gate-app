@@ -5,7 +5,7 @@
     android:id="@+id/baseConstraint"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.BaseFragment">
+    tools:context=".ui.fragment.BaseFragment">
 
     <include
         layout="@layout/loader"

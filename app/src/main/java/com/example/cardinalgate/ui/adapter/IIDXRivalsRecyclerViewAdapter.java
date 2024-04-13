@@ -1,4 +1,4 @@
-package com.example.cardinalgate.ui.iidx;
+package com.example.cardinalgate.ui.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -35,7 +35,7 @@ public class IIDXRivalsRecyclerViewAdapter extends RecyclerView.Adapter<IIDXRiva
     private final APIInterface apiClient;
     private final Context context;
 
-    IIDXRivalsRecyclerViewAdapter(Context context, List<IIDXGetRivalsResponse.IIDXRival> rivals) {
+    public IIDXRivalsRecyclerViewAdapter(Context context, List<IIDXGetRivalsResponse.IIDXRival> rivals) {
         this.context = context;
         this.inflater = LayoutInflater.from(context);
         this.rivals = rivals;
@@ -150,9 +150,7 @@ public class IIDXRivalsRecyclerViewAdapter extends RecyclerView.Adapter<IIDXRiva
             loader = itemView.findViewById(R.id.rivalsProgressIndicator);
             deleteButton = itemView.findViewById(R.id.deleteRivalButton);
 
-            int colorOnSurface = MaterialColors.getColor(itemView, com.google.android.material.R.attr.colorOnSurface);
-
-            swordsIcon.setColorFilter(colorOnSurface);
+            swordsIcon.setColorFilter(UIHelper.getColorOnSurface(itemView));
         }
     }
 

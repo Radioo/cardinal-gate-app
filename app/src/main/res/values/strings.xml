@@ -54,4 +54,12 @@
     <string name="gm" translatable="false">gm</string>
     <string name="mascot">Mascot</string>
     <string name="series_image">Series image</string>
+    <string name="no_cards_found">No cards found</string>
+    <string name="add_card">Add card</string>
+    <string name="add_card_instruction">Input the card number you want to add, you can use either the card ID or display ID (user code). You can also scan a physical card using NFC.</string>
+    <string name="card_id">Card number</string>
+    <string name="nfc_is_disabled">NFC is disabled!</string>
+    <string name="add_card_dialog_add">Add</string>
+    <string name="add_card_dialog_cancel">Cancel</string>
+    <string name="card_added_at">Added at: %s UTC</string>
 </resources>

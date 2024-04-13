@@ -1,4 +1,4 @@
-package com.example.cardinalgate.ui;
+package com.example.cardinalgate.ui.fragment;
 
 import android.content.Context;
 import android.content.Intent;
@@ -47,14 +47,6 @@ public abstract class BaseFragment extends Fragment {
         int viewId = getLayoutId();
         mainView = inflater.inflate(viewId, container, false);
         outerConstraint.addView(mainView);
-
-        ConstraintSet set = new ConstraintSet();
-        set.clone(outerConstraint);
-        set.connect(viewId, ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM, 0);
-        set.connect(viewId, ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END, 0);
-        set.connect(viewId, ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START, 0);
-        set.connect(viewId, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP, 0);
-        set.applyTo(outerConstraint);
 
         spinner = rootView.findViewById(R.id.spinner);
         mascotImage = rootView.findViewById(R.id.mascotImage);

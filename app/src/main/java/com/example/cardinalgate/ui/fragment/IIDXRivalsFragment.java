@@ -1,4 +1,4 @@
-package com.example.cardinalgate.ui.iidx;
+package com.example.cardinalgate.ui.fragment;
 
 import android.Manifest;
 import android.content.Context;
@@ -29,6 +29,7 @@ import com.example.cardinalgate.core.api.model.calls.IIDXAddRivalCall;
 import com.example.cardinalgate.core.api.model.responses.IIDXGetRivalsResponse;
 import com.example.cardinalgate.core.enums.IIDXPlayStyle;
 import com.example.cardinalgate.ui.UIHelper;
+import com.example.cardinalgate.ui.adapter.IIDXRivalsRecyclerViewAdapter;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.android.material.textfield.TextInputEditText;

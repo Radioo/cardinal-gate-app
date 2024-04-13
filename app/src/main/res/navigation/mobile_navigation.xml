@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.cardinalgate.ui.home.HomeFragment"
+        android:name="com.example.cardinalgate.ui.fragment.HomeFragment"
         android:label="@string/menu_home"></fragment>
 
     <activity
@@ -17,12 +17,12 @@
         tools:layout="@layout/activity_login" />
     <fragment
         android:id="@+id/nav_iidx_rivals"
-        android:name="com.example.cardinalgate.ui.iidx.IIDXRivalsFragment"
+        android:name="com.example.cardinalgate.ui.fragment.IIDXRivalsFragment"
         android:label="@string/label_iidx_rivals"
         tools:layout="@layout/fragment_i_i_d_x_rivals" />
     <fragment
         android:id="@+id/nav_cards"
-        android:name="com.example.cardinalgate.CardsFragment"
-        android:label="fragment_cards"
+        android:name="com.example.cardinalgate.ui.fragment.CardsFragment"
+        android:label="@string/menu_cards"
         tools:layout="@layout/fragment_cards" />
 </navigation>

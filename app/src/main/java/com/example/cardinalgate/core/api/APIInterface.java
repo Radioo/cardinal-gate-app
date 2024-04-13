@@ -1,9 +1,11 @@
 package com.example.cardinalgate.core.api;
 
+import com.example.cardinalgate.core.api.model.calls.AddCardCall;
 import com.example.cardinalgate.core.api.model.calls.AuthorizeCall;
 import com.example.cardinalgate.core.api.model.calls.IIDXAddRivalCall;
 import com.example.cardinalgate.core.api.model.calls.SetNotifyForIIDXRivalCall;
 import com.example.cardinalgate.core.api.model.responses.AuthorizeResponse;
+import com.example.cardinalgate.core.api.model.responses.GetCardsResponse;
 import com.example.cardinalgate.core.api.model.responses.IIDXGetRivalsResponse;
 import com.example.cardinalgate.core.api.model.responses.SummaryResponse;
 
@@ -21,6 +23,15 @@ public interface APIInterface {
 
     @GET("/summary")
     Call<SummaryResponse> getSummary();
+
+    @GET("/card")
+    Call<GetCardsResponse> getCards();
+
+    @POST("/card")
+    Call<Void> addCard(@Body AddCardCall call);
+
+    @DELETE("/card/{id}")
+    Call<Void> removeCard(@Path("id") String id);
 
     @GET("/say_gm")
     Call<Void> sayGm();

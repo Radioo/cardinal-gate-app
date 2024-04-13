@@ -82,6 +82,7 @@ dependencies {
     implementation(libs.firebase.messaging)
     implementation(libs.glide)
     implementation(libs.firebase.crashlytics)
+    implementation(libs.swiperefreshlayout)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

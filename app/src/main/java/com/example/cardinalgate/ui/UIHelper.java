@@ -7,8 +7,10 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.cardinalgate.LoginActivity;
+import com.example.cardinalgate.R;
 import com.example.cardinalgate.core.TokenManager;
 import com.example.cardinalgate.core.api.APIUnauthorizedException;
+import com.google.android.material.color.MaterialColors;
 import com.google.android.material.snackbar.Snackbar;
 
 public class UIHelper {
@@ -25,7 +27,7 @@ public class UIHelper {
         }
     }
 
-    public static void makeSnackBar(View view, String message) {
-        Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show();
+    public static int getColorOnSurface(View view) {
+        return MaterialColors.getColor(view, com.google.android.material.R.attr.colorOnSurface);
     }
 }

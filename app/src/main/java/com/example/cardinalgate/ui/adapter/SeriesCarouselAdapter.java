@@ -1,4 +1,4 @@
-package com.example.cardinalgate.ui.home;
+package com.example.cardinalgate.ui.adapter;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;

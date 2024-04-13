@@ -1,4 +1,4 @@
-package com.example.cardinalgate.ui.home;
+package com.example.cardinalgate.ui.fragment;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -17,7 +17,7 @@ import com.example.cardinalgate.core.UserDataManager;
 import com.example.cardinalgate.core.api.APIClient;
 import com.example.cardinalgate.core.api.APIInterface;
 import com.example.cardinalgate.core.api.model.responses.SummaryResponse;
-import com.example.cardinalgate.ui.BaseFragment;
+import com.example.cardinalgate.ui.adapter.SeriesCarouselAdapter;
 import com.google.android.material.carousel.CarouselLayoutManager;
 import com.google.android.material.carousel.CarouselSnapHelper;
 import com.google.android.material.color.MaterialColors;
