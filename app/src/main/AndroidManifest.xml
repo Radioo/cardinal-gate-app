@@ -33,11 +33,23 @@
             android:theme="@style/Theme.CARDINALGATE" />
 
         <service
-            android:name=".core.MyFirebaseMessagingService"
+            android:name=".core.service.MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
+        </service>
+
+        <service
+            android:name=".HCEFService"
+            android:exported="true"
+            android:permission="android.permission.BIND_NFC_SERVICE">
+            <intent-filter>
+                <action android:name="android.nfc.cardemulation.action.HOST_NFCF_SERVICE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.nfc.cardemulation.host_nfcf_service"
+                android:resource="@xml/host_nfcf_service" />
         </service>
     </application>
 

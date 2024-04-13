@@ -1,4 +1,4 @@
-package com.example.cardinalgate.core;
+package com.example.cardinalgate.core.service;
 
 import android.app.Notification;
 import android.app.NotificationChannel;

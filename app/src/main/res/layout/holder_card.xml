@@ -38,12 +38,13 @@
         app:layout_constraintTop_toBottomOf="@+id/cardId" />
 
     <Button
-        android:id="@+id/unlinkButton"
+        android:id="@+id/setHostCard"
         style="?attr/materialIconButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:icon="@drawable/link_off"
+        app:icon="@drawable/smart_card_reader"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
+    id("org.jetbrains.kotlin.android")
 }
 
 android {
@@ -57,6 +58,9 @@ android {
         dataBinding = true
         buildConfig = true
     }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 dependencies {
@@ -83,6 +87,7 @@ dependencies {
     implementation(libs.glide)
     implementation(libs.firebase.crashlytics)
     implementation(libs.swiperefreshlayout)
+    implementation("androidx.core:core-ktx:+")
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

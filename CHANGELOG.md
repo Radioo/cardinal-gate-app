@@ -1,5 +1,6 @@
 ## [1.8]
 - Add dialog before deleting a card
+- Add experimental host card emulation
 
 ## [1.7]
 - Update monochrome icon

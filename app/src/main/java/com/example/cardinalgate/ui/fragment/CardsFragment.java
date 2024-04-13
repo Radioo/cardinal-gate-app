@@ -2,9 +2,14 @@ package com.example.cardinalgate.ui.fragment;
 
 import static android.content.Context.NFC_SERVICE;
 
+import android.Manifest;
+import android.app.Activity;
+import android.content.ComponentName;
+import android.content.pm.PackageManager;
 import android.graphics.Path;
 import android.nfc.NfcAdapter;
 import android.nfc.NfcManager;
+import android.nfc.cardemulation.NfcFCardEmulation;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +18,8 @@ import android.widget.TextView;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.ActivityCompat;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -30,6 +37,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.stream.Stream;
@@ -41,6 +49,9 @@ import retrofit2.Response;
 public class CardsFragment extends BaseFragment {
     private APIInterface apiClient;
     private NfcManager nfcManager;
+    private PackageManager packageManager;
+    private NfcFCardEmulation nfcFCardEmulation;
+    private ComponentName HCEFComponentName;
 
     private SwipeRefreshLayout cardSwipeRefreshLayout;
     private TextView noCardsFoundText;
@@ -52,6 +63,15 @@ public class CardsFragment extends BaseFragment {
 
         apiClient = APIClient.getClient().create(APIInterface.class);
         nfcManager = (NfcManager) requireContext().getSystemService(NFC_SERVICE);
+        packageManager = requireContext().getPackageManager();
+
+        HCEFComponentName = new ComponentName("com.example.cardinalgate", "com.example.cardinalgate.HCEFService");
+
+        NfcAdapter nfcAdapter = NfcAdapter.getDefaultAdapter(requireContext());
+        if(nfcAdapter != null) {
+            nfcFCardEmulation = NfcFCardEmulation.getInstance(nfcAdapter);
+            nfcFCardEmulation.enableService(requireActivity(), HCEFComponentName);
+        }
 
         cardSwipeRefreshLayout = mainView.findViewById(R.id.cardSwipeRefreshLayout);
         noCardsFoundText = mainView.findViewById(R.id.noCardsFoundText);
@@ -62,6 +82,13 @@ public class CardsFragment extends BaseFragment {
         addCardButton.setOnClickListener(v -> showAddCardDialog());
 
         getCards();
+
+        if(ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.NFC
+        ) != PackageManager.PERMISSION_GRANTED) {
+            makeSnackBar("NFC permission not granted");
+        }
     }
 
     @Override
@@ -188,10 +215,50 @@ public class CardsFragment extends BaseFragment {
         builder.show();
     }
 
+    private boolean onSetHostCard(GetCardsResponse.Card card) {
+        Activity activity = requireActivity();
+
+        nfcFCardEmulation.disableService(activity);
+        boolean result = nfcFCardEmulation.setNfcid2ForService(HCEFComponentName, "02fea0bf2a4e547a");
+        nfcFCardEmulation.registerSystemCodeForService(HCEFComponentName, "4000");
+        nfcFCardEmulation.enableService(activity, HCEFComponentName);
+
+        if(!result) {
+            makeSnackBar("Failed to set host card");
+        }
+        else {
+            makeSnackBar("Host card set successfully");
+        }
+
+        return result;
+    }
+
     private void parseCards(GetCardsResponse.Card[] cards) {
         ArrayList<GetCardsResponse.Card> cardList = new ArrayList<>(Arrays.asList(cards));
 
         cardsRecycler.setLayoutManager(new LinearLayoutManager(requireContext()));
-        cardsRecycler.setAdapter(new CardRecyclerAdapter(requireContext(), cardList, this::onCardUnlink));
+        cardsRecycler.setAdapter(new CardRecyclerAdapter(
+                requireContext(),
+                cardList,
+                packageManager.hasSystemFeature(PackageManager.FEATURE_NFC_HOST_CARD_EMULATION_NFCF),
+                this::onSetHostCard
+        ));
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                CardRecyclerAdapter adapter = (CardRecyclerAdapter) Objects.requireNonNull(cardsRecycler.getAdapter());
+                int position = viewHolder.getAdapterPosition();
+                GetCardsResponse.Card card = adapter.getItem(position);
+                onCardUnlink(card);
+
+                adapter.notifyItemChanged(position);
+            }
+        });
+
+        itemTouchHelper.attachToRecyclerView(cardsRecycler);
     }
 }
