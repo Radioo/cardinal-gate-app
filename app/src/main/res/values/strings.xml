@@ -61,6 +61,5 @@
     <string name="nfc_is_disabled">NFC is disabled!</string>
     <string name="add_card_dialog_add">Add</string>
     <string name="add_card_dialog_cancel">Cancel</string>
-    <string name="card_added_at">Added at: %s UTC</string>
     <string name="felica_emulation_service_desc">Felica emulation service</string>
 </resources>

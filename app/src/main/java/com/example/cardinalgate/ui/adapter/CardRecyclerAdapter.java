@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -48,7 +47,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
         GetCardsResponse.Card card = cards.get(positionInHolder);
         holder.cardIcon.setImageDrawable(ResourcesCompat.getDrawable(context.getResources(), R.drawable.credit_card, null));
         holder.cardId.setText(card.id);
-        holder.addedAt.setText(String.format(context.getString(R.string.card_added_at), card.added));
+        holder.addedAt.setText(card.displayId);
 
         holder.setHostCard.setOnClickListener(v -> {
             onSetHostCard.onSetHostCard(card);
@@ -79,7 +78,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
 
             cardIcon = itemView.findViewById(R.id.cardIcon);
             cardId = itemView.findViewById(R.id.cardId);
-            addedAt = itemView.findViewById(R.id.addedAt);
+            addedAt = itemView.findViewById(R.id.displayId);
             setHostCard = itemView.findViewById(R.id.setHostCard);
 
             cardIcon.setColorFilter(UIHelper.getColorOnSurface(itemView));
