@@ -1,10 +1,15 @@
 package com.example.cardinalgate.ui.fragment;
 
+import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.view.View;
+import android.widget.Button;
 
 import com.example.cardinalgate.R;
 import com.example.cardinalgate.core.api.APIClient;
@@ -20,6 +25,8 @@ import com.github.AAChartModel.AAChartCore.AAChartEnum.AAChartType;
 import com.github.AAChartModel.AAChartCore.AAOptionsModel.AAOptions;
 import com.github.AAChartModel.AAChartCore.AAOptionsModel.AAStyle;
 import com.github.AAChartModel.AAChartCore.AAOptionsModel.AATooltip;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.button.MaterialButtonToggleGroup;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -31,18 +38,22 @@ import retrofit2.Response;
 public class SDVXStatsFragment extends BaseFragment {
     private static final String[] lamps = new String[]{"NO PLAY", "PLAYED", "CLEAR", "EXCESSIVE CLEAR", "UC", "PUC"};
     private static final String[] grades = new String[]{
-            "S",
-            "AAA+",
-            "AAA",
-            "AA+",
-            "AA",
-            "A+",
-            "A",
-            "B",
-            "C",
-            "D",
             "NO GRADE",
+            "D",
+            "C",
+            "B",
+            "A",
+            "A+",
+            "AA",
+            "AA+",
+            "AAA",
+            "AAA+",
+            "S",
     };
+
+    private MaterialButtonToggleGroup chartTypeToggleGroup;
+    private Button lampsButton;
+    private Button gradesButton;
     private AAChartView lampChart;
     private AAChartView gradeChart;
     private APIInterface apiInterface;
@@ -51,8 +62,28 @@ public class SDVXStatsFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
 
         apiInterface = APIClient.getClient().create(APIInterface.class);
+        chartTypeToggleGroup = view.findViewById(R.id.chartTypeToggleGroup);
+        lampsButton = view.findViewById(R.id.lampsButton);
+        gradesButton = view.findViewById(R.id.gradesButton);
         lampChart = view.findViewById(R.id.lampChart);
         gradeChart = view.findViewById(R.id.gradeChart);
+
+        chartTypeToggleGroup.check(R.id.lampsButton);
+        chartTypeToggleGroup.addOnButtonCheckedListener((group, checkedId, isChecked) -> {
+            if (!isChecked && group.getCheckedButtonId() == -1) {
+                group.check(checkedId);
+                return;
+            }
+
+            if (checkedId == R.id.lampsButton) {
+                lampChart.setVisibility(View.VISIBLE);
+                gradeChart.setVisibility(View.GONE);
+            }
+            else {
+                lampChart.setVisibility(View.GONE);
+                gradeChart.setVisibility(View.VISIBLE);
+            }
+        });
 
         getStats();
     }
@@ -136,17 +167,17 @@ public class SDVXStatsFragment extends BaseFragment {
 
         createChart(lampElements, lampChart, new String[]{"#717171", "#144513", "#448f44", "#5a3188", "#8c1446", "#9f960f"});
         createChart(gradeElements, gradeChart, new String[]{
-                "#e5d31e",
-                "#cebe1b",
-                "#b7a918",
-                "#a09415",
-                "#897f12",
-                "#736a0f",
-                "#5c540c",
-                "#453f09",
-                "#2e2a06",
-                "#171503",
-                "#000000",
+                "#717171",
+                "#E58C0F",
+                "#FEAF0D",
+                "#C7C7C7",
+                "#8a9017",
+                "#aeb71d",
+                "#d3dd23",
+                "#dbe349",
+                "#e2e970",
+                "#eaef96",
+                "#f2f5bc",
         });
         hideLoader(true);
     }
