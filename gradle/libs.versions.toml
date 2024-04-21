@@ -1,5 +1,6 @@
 [versions]
 agp = "8.3.2"
+coreKtx = "1.12.0"
 junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
@@ -30,6 +31,7 @@ firebaseCrashlytics = "18.6.4"
 swiperefreshlayout = "1.2.0-alpha01"
 
 [libraries]
+core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }

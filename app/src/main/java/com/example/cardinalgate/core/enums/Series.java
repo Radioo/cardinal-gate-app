@@ -63,6 +63,8 @@ public enum Series {
         switch(this) {
             case IIDX:
                 return R.id.iidxNavMenu;
+            case SDVX:
+                return R.id.sdvxNavMenu;
             default:
                 return null;
         }

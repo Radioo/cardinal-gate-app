@@ -1,5 +1,6 @@
 ## [1.9]
 - Show display ID instead of added time
+- Add SDVX statistics view
 
 ## [1.8.1]
 - Fix hardcoded emulated card ID

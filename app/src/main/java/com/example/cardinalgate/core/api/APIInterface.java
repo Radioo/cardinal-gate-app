@@ -7,6 +7,7 @@ import com.example.cardinalgate.core.api.model.calls.SetNotifyForIIDXRivalCall;
 import com.example.cardinalgate.core.api.model.responses.AuthorizeResponse;
 import com.example.cardinalgate.core.api.model.responses.GetCardsResponse;
 import com.example.cardinalgate.core.api.model.responses.IIDXGetRivalsResponse;
+import com.example.cardinalgate.core.api.model.responses.SDVXGetStatsResponse;
 import com.example.cardinalgate.core.api.model.responses.SummaryResponse;
 
 import retrofit2.Call;
@@ -47,4 +48,7 @@ public interface APIInterface {
 
     @PUT("iidx/rival/notify")
     Call<Void> setNotifyForIIDXRival(@Body SetNotifyForIIDXRivalCall call);
+
+    @GET("sdvx/stats")
+    Call<SDVXGetStatsResponse> getStats();
 }

@@ -25,4 +25,9 @@
         android:name="com.example.cardinalgate.ui.fragment.CardsFragment"
         android:label="@string/menu_cards"
         tools:layout="@layout/fragment_cards" />
+    <fragment
+        android:id="@+id/nav_sdvx_stats"
+        android:name="com.example.cardinalgate.ui.fragment.SDVXStatsFragment"
+        android:label="SOUND VOLTEX Statistics"
+        tools:layout="@layout/fragment_s_d_v_x_stats" />
 </navigation>

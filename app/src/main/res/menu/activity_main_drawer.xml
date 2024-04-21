@@ -37,4 +37,18 @@
             </group>
         </menu>
     </item>
+
+    <item
+        android:id="@+id/sdvxNavMenu"
+        android:title="@string/game_sdvx"
+        android:visible="false">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_sdvx_stats"
+                    android:icon="@drawable/bar_chart"
+                    android:title="@string/nav_stats" />
+            </group>
+        </menu>
+    </item>
 </menu>

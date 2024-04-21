@@ -16,5 +16,10 @@
       <option name="name" value="b9227850-4a00-4cb0-b5ae-bc798fca65b8" />
       <option name="url" value="https://maven.google.com" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="344ff851-1c23-4470-bd35-5b5c92f68224" />
+      <option name="name" value="344ff851-1c23-4470-bd35-5b5c92f68224" />
+      <option name="url" value="https://jitpack.io" />
+    </remote-repository>
   </component>
 </project>
