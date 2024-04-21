@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.core.content.res.ResourcesCompat;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -68,21 +69,20 @@ public class SDVXStatsFragment extends BaseFragment {
         lampChart = view.findViewById(R.id.lampChart);
         gradeChart = view.findViewById(R.id.gradeChart);
 
-        chartTypeToggleGroup.check(R.id.lampsButton);
         chartTypeToggleGroup.addOnButtonCheckedListener((group, checkedId, isChecked) -> {
-            if (!isChecked && group.getCheckedButtonId() == -1) {
+            if(group.getCheckedButtonId() == -1) {
                 group.check(checkedId);
-                return;
             }
+        });
 
-            if (checkedId == R.id.lampsButton) {
-                lampChart.setVisibility(View.VISIBLE);
-                gradeChart.setVisibility(View.GONE);
-            }
-            else {
-                lampChart.setVisibility(View.GONE);
-                gradeChart.setVisibility(View.VISIBLE);
-            }
+        lampsButton.setOnClickListener(v -> {
+            lampChart.setVisibility(View.VISIBLE);
+            gradeChart.setVisibility(View.GONE);
+        });
+
+        gradesButton.setOnClickListener(v -> {
+            lampChart.setVisibility(View.GONE);
+            gradeChart.setVisibility(View.VISIBLE);
         });
 
         getStats();
@@ -91,6 +91,18 @@ public class SDVXStatsFragment extends BaseFragment {
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_s_d_v_x_stats;
+    }
+
+    private void handleInitialGraphSelection() {
+        if (chartTypeToggleGroup != null) {
+            int checkedId = chartTypeToggleGroup.getCheckedButtonId();
+            if(checkedId == R.id.lampsButton) {
+                lampsButton.callOnClick();
+            }
+            else if(checkedId == R.id.gradesButton) {
+                gradesButton.callOnClick();
+            }
+        }
     }
 
     private String[] getLevelCategories() {
@@ -179,6 +191,10 @@ public class SDVXStatsFragment extends BaseFragment {
                 "#eaef96",
                 "#f2f5bc",
         });
+
+        chartTypeToggleGroup.check(R.id.lampsButton);
+        handleInitialGraphSelection();
+
         hideLoader(true);
     }
 
