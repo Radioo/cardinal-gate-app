@@ -181,15 +181,15 @@ public class SDVXStatsFragment extends BaseFragment {
         createChart(gradeElements, gradeChart, new String[]{
                 "#717171",
                 "#E58C0F",
-                "#FEAF0D",
+                "#FEC86C",
                 "#C7C7C7",
-                "#8a9017",
-                "#aeb71d",
-                "#d3dd23",
-                "#dbe349",
-                "#e2e970",
-                "#eaef96",
-                "#f2f5bc",
+                "#3E3BBB",
+                "#7675BB",
+                "#1D9890",
+                "#1DD2CA",
+                "#6F6018",
+                "#A79819",
+                "#EBDC19",
         });
 
         chartTypeToggleGroup.check(R.id.lampsButton);
