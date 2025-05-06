@@ -12,7 +12,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class BaseUrlInterceptor implements Interceptor {
-    private static final String API_PATH = "api2";
+    private static final String API_PATH = "api/old_api/api2";
 
     @NonNull
     @Override

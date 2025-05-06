@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.example.cardinalgate"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.cardinalgate"

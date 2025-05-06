@@ -37,7 +37,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SDVXStatsFragment extends BaseFragment {
-    private static final String[] lamps = new String[]{"NO PLAY", "PLAYED", "CLEAR", "EXCESSIVE CLEAR", "UC", "PUC"};
+    private static final String[] lamps = new String[]{"NO PLAY", "PLAYED", "CLEAR", "EXCESSIVE CLEAR", "MAXXIVE CLEAR", "UC", "PUC"};
     private static final String[] grades = new String[]{
             "NO GRADE",
             "D",
@@ -177,7 +177,7 @@ public class SDVXStatsFragment extends BaseFragment {
                     .data(datum.levels);
         }
 
-        createChart(lampElements, lampChart, new String[]{"#717171", "#144513", "#448f44", "#5a3188", "#8c1446", "#9f960f"});
+        createChart(lampElements, lampChart, new String[]{"#717171", "#144513", "#448f44", "#5a3188", "#C1B1B6", "#8c1446", "#9f960f"});
         createChart(gradeElements, gradeChart, new String[]{
                 "#717171",
                 "#E58C0F",
