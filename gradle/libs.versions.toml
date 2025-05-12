@@ -26,7 +26,7 @@ firebaseBom = "33.13.0"
 firebaseAnalytics = "21.6.2"
 firebaseMessaging = "23.4.1"
 glide = "5.0.0-rc01"
-comGoogleFirebaseCrashlyticsGradlePlugin = "2.9.9"
+comGoogleFirebaseCrashlyticsGradlePlugin = "3.0.3"
 firebaseCrashlytics = "19.4.3"
 swiperefreshlayout = "1.2.0-beta01"
 
